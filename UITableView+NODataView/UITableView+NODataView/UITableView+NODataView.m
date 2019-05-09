@@ -9,7 +9,10 @@
 #import "UITableView+NODataView.h"
 #import "MLNOdataView.h"
 #import <objc/runtime.h>
-
+#import "MLRefreshHead.h"
+#import <MJRefresh.h>
+#import "MLRequestModel.h"
+#import "MLRequestHttpModel.h"
 @protocol TableViewDelegate <NSObject>
 @optional
 - (UIView *)noDataView;
@@ -188,6 +191,35 @@ static NSString * const kTableViewPropertyInitFinish = @"kTableViewPropertyInitF
     return [obj boolValue];
 }
 
+
+
+/**
+ 分页的页数
+ */
+static NSString * const MLPageNumberIndex = @"MLPageNumberIndex";
+
+- (void)setIndexNumber:(NSInteger)index {
+    objc_setAssociatedObject(self, &MLPageNumberIndex, @(index), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (NSInteger)indexNumber {
+    id obj = objc_getAssociatedObject(self, &MLPageNumberIndex);
+    return [obj integerValue];
+}
+
+
+static NSString * const MLHaveNoMorePage = @"MLHaveNoMorePage";
+/**
+ 判断是否还有分页
+ */
+- (void)setNoMorePage:(BOOL)isNoMore {
+    objc_setAssociatedObject(self, &MLHaveNoMorePage, @(isNoMore), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)noMorePage {
+    id obj = objc_getAssociatedObject(self, &MLHaveNoMorePage);
+    return [obj boolValue];
+}
 /**
  移除 KVO 监听
  */
@@ -196,6 +228,48 @@ static NSString * const kTableViewPropertyInitFinish = @"kTableViewPropertyInitF
     if ([self.backgroundView isKindOfClass:[MLNOdataView class]]) {
         [self.backgroundView removeObserver:self forKeyPath:kNoDataViewObserveKeyPath context:nil];
     }
+}
+
+- (void)setHeadReload:(void(^)(void))reloadBlock{
+    self.mj_header = [MLRefreshHead headerWithRefreshingBlock:reloadBlock];
+}
+
+- (void)setFooterReload:(void(^)(void))reloadBlock{
+    self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:reloadBlock];
+}
+
+- (void)endRefresh{
+    [self.mj_footer endRefreshing];
+    [self.mj_header endRefreshing];
+}
+
+- (void)requestModel:(MLRequestModel *)model success:(void(^)(id response)) success error:(void(^)(id error)) error{
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:model.param];
+    if (model.pageName.length > 0&&model.pageName) {
+//   判断接口是否提供下拉刷新数据
+        if (model.isRefresh) {
+//            下拉刷新
+            if (self.noMorePage) return;
+            }else{
+//            上拉刷新
+            self.indexNumber = 0;
+        }
+        self.indexNumber ++;
+        [dict setValue:@(self.indexNumber) forKey:model.pageName];
+    }
+    model.param = dict;
+    [MLRequestHttpModel requestHttpModel:model success:^(id  _Nonnull response) {
+        NSArray *array = (NSArray *)response;
+//        判断分页里面是否包含数据
+        if (array.count == 0) {
+            self.noMorePage = YES;
+        }else{
+            self.noMorePage = NO;
+        }
+    } error:^(id  _Nonnull error) {
+        self.indexNumber --;
+    }];
 }
 
 - (void)replace_dealloc {
