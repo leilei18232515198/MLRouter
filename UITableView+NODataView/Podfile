@@ -1,0 +1,5 @@
+platform :ios, ‘8.0’
+target 'UITableView+NODataView' do 
+  pod 'AFNetworking'
+  pod 'JLRoutes'
+end
