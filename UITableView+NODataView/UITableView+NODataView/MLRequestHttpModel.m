@@ -9,11 +9,22 @@
 #import "MLRequestHttpModel.h"
 #import "MLRequestModel.h"
 #import <AFNetworking.h>
+#import "NSObject+MLRequestHttpModel.h"
 @implementation MLRequestHttpModel
 
-+ (void)requestHttpModel:(MLRequestModel *)model success:(void(^)(id response)) success error:(void(^)(id error)) error{
++ (void)requestHttpModel:(MLRequestModel *)model success:(void(^)(id response)) success error:(void(^)(id errorResult)) error{
     
-    
-    
+    [self originRequestHttpModel:model success:^(id  _Nonnull response) {
+      
+        id result = response;
+        NSArray *tempArray = [model.jsonAppropriate componentsSeparatedByString:@"/"];
+        for (NSString *string in tempArray) {
+            result = result[string];
+        }
+        success (result);
+        
+    } error:^(id  _Nonnull errorResult) {
+        error(errorResult);
+    }];
 }
 @end

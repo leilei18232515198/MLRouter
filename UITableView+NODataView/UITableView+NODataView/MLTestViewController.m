@@ -8,7 +8,8 @@
 
 #import "MLTestViewController.h"
 #import "MLComment.h"
-
+#import "AppDelegate.h"
+#import "AppDelegate+MLAppDelegate.h"
 @interface MLTestViewController ()
 
 @end
@@ -29,11 +30,16 @@
     [self.view addSubview:button];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if (self.block) {
+        self.block();
+    }
+}
+
 
 - (void)clickAction:(UIButton *)sender{
     NSString *url = [NSString stringWithFormat:@"MLHttp://Push/MLTestViewController?userId=10&index=%ld",[self.index integerValue]+1];
     ROUTERTOURL(url);
-
 }
 
 @end

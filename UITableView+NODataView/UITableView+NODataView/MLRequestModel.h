@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) float cacheTime;
 @property (nonatomic,assign) BOOL isRefresh;
 @property (nonatomic,copy) NSString *pageName;
+@property (nonatomic,strong) id originalJeson;
+@property (nonatomic,copy) NSString *jsonAppropriate;
 @end
 
 NS_ASSUME_NONNULL_END

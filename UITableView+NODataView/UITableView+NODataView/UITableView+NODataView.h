@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableView (NODataView)
 
+@property (nonatomic,copy)void(^reloadBlock)(void);
+
 - (void)setHeadReload:(void(^)(void))reloadBlock;
 - (void)setFooterReload:(void(^)(void))reloadBlock;
 - (void)endRefresh;

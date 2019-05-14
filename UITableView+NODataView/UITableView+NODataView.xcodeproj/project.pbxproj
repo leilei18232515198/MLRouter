@@ -28,6 +28,9 @@
 		95666DB32283F93100ACEF98 /* MLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DB22283F93100ACEF98 /* MLRequestModel.m */; };
 		95666DB62283FBC500ACEF98 /* MLHttpStringModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DB52283FBC500ACEF98 /* MLHttpStringModel.m */; };
 		95666DB9228411A300ACEF98 /* MLRequestHttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DB8228411A300ACEF98 /* MLRequestHttpModel.m */; };
+		95666DBF2285525C00ACEF98 /* NSObject+MLRequestHttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DBE2285525C00ACEF98 /* NSObject+MLRequestHttpModel.m */; };
+		95666DC222857A5400ACEF98 /* MLCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DC122857A5400ACEF98 /* MLCacheModel.m */; };
+		95666DC5228A5B9E00ACEF98 /* MLCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DC4228A5B9E00ACEF98 /* MLCustomView.m */; };
 		EBB90AE9613C83AE78254B67 /* libPods-UITableView+NODataView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874644933D1E6984E3871510 /* libPods-UITableView+NODataView.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +98,12 @@
 		95666DB52283FBC500ACEF98 /* MLHttpStringModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLHttpStringModel.m; sourceTree = "<group>"; };
 		95666DB7228411A300ACEF98 /* MLRequestHttpModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLRequestHttpModel.h; sourceTree = "<group>"; };
 		95666DB8228411A300ACEF98 /* MLRequestHttpModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLRequestHttpModel.m; sourceTree = "<group>"; };
+		95666DBD2285525C00ACEF98 /* NSObject+MLRequestHttpModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+MLRequestHttpModel.h"; sourceTree = "<group>"; };
+		95666DBE2285525C00ACEF98 /* NSObject+MLRequestHttpModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MLRequestHttpModel.m"; sourceTree = "<group>"; };
+		95666DC022857A5400ACEF98 /* MLCacheModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLCacheModel.h; sourceTree = "<group>"; };
+		95666DC122857A5400ACEF98 /* MLCacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLCacheModel.m; sourceTree = "<group>"; };
+		95666DC3228A5B9E00ACEF98 /* MLCustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLCustomView.h; sourceTree = "<group>"; };
+		95666DC4228A5B9E00ACEF98 /* MLCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLCustomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +203,12 @@
 				95666DB52283FBC500ACEF98 /* MLHttpStringModel.m */,
 				95666DB7228411A300ACEF98 /* MLRequestHttpModel.h */,
 				95666DB8228411A300ACEF98 /* MLRequestHttpModel.m */,
+				95666DBD2285525C00ACEF98 /* NSObject+MLRequestHttpModel.h */,
+				95666DBE2285525C00ACEF98 /* NSObject+MLRequestHttpModel.m */,
+				95666DC022857A5400ACEF98 /* MLCacheModel.h */,
+				95666DC122857A5400ACEF98 /* MLCacheModel.m */,
+				95666DC3228A5B9E00ACEF98 /* MLCustomView.h */,
+				95666DC4228A5B9E00ACEF98 /* MLCustomView.m */,
 				95666DAD2283CC2000ACEF98 /* MJHeadRefresh */,
 				952759CE227E7C5E00E92FC9 /* Main.storyboard */,
 				952759D1227E7C6700E92FC9 /* Assets.xcassets */,
@@ -410,7 +425,10 @@
 				95666DB9228411A300ACEF98 /* MLRequestHttpModel.m in Sources */,
 				95666DB62283FBC500ACEF98 /* MLHttpStringModel.m in Sources */,
 				952759FC227E7D4500E92FC9 /* UITableView+NODataView.m in Sources */,
+				95666DC5228A5B9E00ACEF98 /* MLCustomView.m in Sources */,
+				95666DBF2285525C00ACEF98 /* NSObject+MLRequestHttpModel.m in Sources */,
 				95666DAB2282DF5F00ACEF98 /* MLTestViewController.m in Sources */,
+				95666DC222857A5400ACEF98 /* MLCacheModel.m in Sources */,
 				95666DB02283CD4C00ACEF98 /* MLRefreshHead.m in Sources */,
 				952759D8227E7C6700E92FC9 /* main.m in Sources */,
 				95666DA22282D68700ACEF98 /* MLMessageViewController.m in Sources */,

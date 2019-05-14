@@ -10,6 +10,7 @@
 #import "UITableView+NODataView.h"
 #import "MLRequestModel.h"
 #import "MLHttpStringModel.h"
+#import "MLCustomView.h"
 @interface MLAnnounceViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView *tableview;
 @end
@@ -30,12 +31,10 @@
     __weak typeof(self) weakSelf = self;
     [self.tableview setHeadReload:^{
         [weakSelf  tableViewReloadData:NO];
-        [weakSelf.tableview endRefresh];
     }];
     
     [self.tableview setFooterReload:^{
         [weakSelf tableViewReloadData:YES];
-        [weakSelf.tableview endRefresh];
     }];
     //    [tableview reloadData];
 }
@@ -55,6 +54,7 @@
     model.param = dict;
     model.isCache = YES;
     model.pageName = @"page.currentPage";
+    model.jsonAppropriate = @"entity/courseList";
     
     [self.tableview requestModel:model success:^(id  _Nonnull response) {
         
@@ -72,13 +72,27 @@
     return cell;
 }
 
-- (UIImage *)noDataViewImage{
+//无数据显示
+//- (UIImage *)noDataViewImage{
+//
+//    return [UIImage imageNamed:@"assessment"];
+//}
+//
+//- (NSString *)noDataViewMessage{
+//    return @"暂无数据";
+//}
+
+//自定义视图
+- (UIView *)noDataView{
+    MLCustomView *view = [[MLCustomView alloc]initWithFrame:self.tableview.bounds];
+    [view.button addTarget:self action:@selector(customActions:) forControlEvents:UIControlEventTouchUpInside];
+    return view;
+}
+
+- (void)customActions:(UIButton *)sender{
     
-    return [UIImage imageNamed:@"assessment"];
+//    if (self.tableview.reloadBlock) {
+//    self.tableview.reloadBlock();
+//    }
 }
-
-- (NSString *)noDataViewMessage{
-    return @"暂无数据";
-}
-
 @end

@@ -215,10 +215,18 @@ static NSString * const MLHaveNoMorePage = @"MLHaveNoMorePage";
 - (void)setNoMorePage:(BOOL)isNoMore {
     objc_setAssociatedObject(self, &MLHaveNoMorePage, @(isNoMore), OBJC_ASSOCIATION_ASSIGN);
 }
-
 - (BOOL)noMorePage {
     id obj = objc_getAssociatedObject(self, &MLHaveNoMorePage);
     return [obj boolValue];
+}
+
+static NSString * const MLReloadBlock = @"reloadBlock";
+- (void)setReloadBlock:(void(^)(void))reloadBlock{
+    objc_setAssociatedObject(self, &MLReloadBlock, reloadBlock, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (void(^)(void))reloadBlock{
+    return objc_getAssociatedObject(self, &MLReloadBlock);
 }
 /**
  移除 KVO 监听
@@ -243,6 +251,11 @@ static NSString * const MLHaveNoMorePage = @"MLHaveNoMorePage";
     [self.mj_header endRefreshing];
 }
 
+- (void)endNormalRefresh{
+    [self.mj_footer endRefreshingWithNoMoreData];
+    [self.mj_header endRefreshing];
+}
+
 - (void)requestModel:(MLRequestModel *)model success:(void(^)(id response)) success error:(void(^)(id error)) error{
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:model.param];
@@ -250,7 +263,7 @@ static NSString * const MLHaveNoMorePage = @"MLHaveNoMorePage";
 //   判断接口是否提供下拉刷新数据
         if (model.isRefresh) {
 //            下拉刷新
-            if (self.noMorePage) return;
+            if (self.noMorePage) return [self endNormalRefresh];
             }else{
 //            上拉刷新
             self.indexNumber = 0;
@@ -261,14 +274,19 @@ static NSString * const MLHaveNoMorePage = @"MLHaveNoMorePage";
     model.param = dict;
     [MLRequestHttpModel requestHttpModel:model success:^(id  _Nonnull response) {
         NSArray *array = (NSArray *)response;
+        success (array);
 //        判断分页里面是否包含数据
         if (array.count == 0) {
             self.noMorePage = YES;
+            [self endNormalRefresh];
         }else{
             self.noMorePage = NO;
+            [self endRefresh];
         }
-    } error:^(id  _Nonnull error) {
+    } error:^(id  _Nonnull errorResult) {
         self.indexNumber --;
+        [self endRefresh];
+        error (errorResult);
     }];
 }
 

@@ -29,8 +29,19 @@
 }
 
 - (void)clickAction:(UIButton *)sender{
+//    NSString *url = @"MLHttp://Push/MLTestViewController";
+//    ROUTERTOURL(url);
+    void (^ testBlock)(void) = ^(void){
+        NSLog(@"=============回调了");
+    };
+
+    
+    NSMutableDictionary *dict = @{}.mutableCopy;
+    [dict setValue:testBlock forKey:@"block"];
     NSString *url = @"MLHttp://Push/MLTestViewController";
-    ROUTERTOURL(url);
+    [MLAppDelegate routeURL:MLUrl(url) param:dict];
+   
+
 }
 
 @end

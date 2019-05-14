@@ -70,8 +70,10 @@
 
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    
     return [[JLRoutes globalRoutes] routeURL:url];
 }
 
+- (void)routeURL:(NSURL *)URL param:(NSDictionary *)param{
+    [[JLRoutes globalRoutes] routeURL:URL withParameters:param];
+}
 @end

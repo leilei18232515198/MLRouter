@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)setRootViewController;
+- (void)routeURL:(NSURL *)URL param:(NSDictionary *)param;
 @end
 
 NS_ASSUME_NONNULL_END

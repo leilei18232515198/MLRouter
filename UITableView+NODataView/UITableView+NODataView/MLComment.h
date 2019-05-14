@@ -9,7 +9,11 @@
 #ifndef MLComment_h
 #define MLComment_h
 #import <AFNetworking.h>
-
+#import "AppDelegate+MLAppDelegate.h"
+#import "AppDelegate.h"
 #define ROUTERTOURL(url) [[UIApplication sharedApplication]openURL:[NSURL URLWithString:url] options:@{UIApplicationOpenURLOptionsSourceApplicationKey : @YES} completionHandler:nil]
+
+#define MLAppDelegate ((AppDelegate*)([[UIApplication sharedApplication] delegate]))
+#define MLUrl(url) [NSURL URLWithString:url]
 
 #endif /* MLComment_h */
