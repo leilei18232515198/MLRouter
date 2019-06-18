@@ -228,6 +228,22 @@ static NSString * const MLReloadBlock = @"reloadBlock";
 - (void(^)(void))reloadBlock{
     return objc_getAssociatedObject(self, &MLReloadBlock);
 }
+
+
+static NSString * const isFirstShowAnimationView = @"isFirstShowAnimationView";
+
+- (void)setIsFirstShowAnimationView:(BOOL)finish {
+    objc_setAssociatedObject(self, &isFirstShowAnimationView, @(finish), OBJC_ASSOCIATION_ASSIGN);
+}
+
+/**
+ 是否已经加载完成数据
+ */
+- (BOOL)isFirstShowAnimationView {
+    id obj = objc_getAssociatedObject(self, &isFirstShowAnimationView);
+    return [obj boolValue];
+}
+
 /**
  移除 KVO 监听
  */
@@ -272,8 +288,10 @@ static NSString * const MLReloadBlock = @"reloadBlock";
         [dict setValue:@(self.indexNumber) forKey:model.pageName];
     }
     model.param = dict;
+    model.isAnimation = self.isFirstShowAnimationView;
     [MLRequestHttpModel requestHttpModel:model success:^(id  _Nonnull response) {
         NSArray *array = (NSArray *)response;
+        self.isFirstShowAnimationView = YES;
         success (array);
 //        判断分页里面是否包含数据
         if (array.count == 0) {

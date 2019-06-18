@@ -31,6 +31,7 @@
 		95666DBF2285525C00ACEF98 /* NSObject+MLRequestHttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DBE2285525C00ACEF98 /* NSObject+MLRequestHttpModel.m */; };
 		95666DC222857A5400ACEF98 /* MLCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DC122857A5400ACEF98 /* MLCacheModel.m */; };
 		95666DC5228A5B9E00ACEF98 /* MLCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DC4228A5B9E00ACEF98 /* MLCustomView.m */; };
+		95666DC8228ABD8800ACEF98 /* MLAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95666DC7228ABD8800ACEF98 /* MLAnimationView.m */; };
 		EBB90AE9613C83AE78254B67 /* libPods-UITableView+NODataView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874644933D1E6984E3871510 /* libPods-UITableView+NODataView.a */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,8 @@
 		95666DC122857A5400ACEF98 /* MLCacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLCacheModel.m; sourceTree = "<group>"; };
 		95666DC3228A5B9E00ACEF98 /* MLCustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLCustomView.h; sourceTree = "<group>"; };
 		95666DC4228A5B9E00ACEF98 /* MLCustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLCustomView.m; sourceTree = "<group>"; };
+		95666DC6228ABD8800ACEF98 /* MLAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLAnimationView.h; sourceTree = "<group>"; };
+		95666DC7228ABD8800ACEF98 /* MLAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLAnimationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 				95666DC122857A5400ACEF98 /* MLCacheModel.m */,
 				95666DC3228A5B9E00ACEF98 /* MLCustomView.h */,
 				95666DC4228A5B9E00ACEF98 /* MLCustomView.m */,
+				95666DC6228ABD8800ACEF98 /* MLAnimationView.h */,
+				95666DC7228ABD8800ACEF98 /* MLAnimationView.m */,
 				95666DAD2283CC2000ACEF98 /* MJHeadRefresh */,
 				952759CE227E7C5E00E92FC9 /* Main.storyboard */,
 				952759D1227E7C6700E92FC9 /* Assets.xcassets */,
@@ -432,6 +437,7 @@
 				95666DB02283CD4C00ACEF98 /* MLRefreshHead.m in Sources */,
 				952759D8227E7C6700E92FC9 /* main.m in Sources */,
 				95666DA22282D68700ACEF98 /* MLMessageViewController.m in Sources */,
+				95666DC8228ABD8800ACEF98 /* MLAnimationView.m in Sources */,
 				952759FF227E7D7400E92FC9 /* MLNOdataView.m in Sources */,
 				95666DA82282D6FF00ACEF98 /* MLNavigationViewController.m in Sources */,
 				952759CA227E7C5E00E92FC9 /* AppDelegate.m in Sources */,

@@ -10,6 +10,9 @@
 #import "MLRequestModel.h"
 #import <AFNetworking.h>
 #import "MLCacheModel.h"
+#import "MLAnimationView.h"
+#import <objc/runtime.h>
+
 @implementation NSObject (MLRequestHttpModel)
 
 + (void)originRequestHttpModel:(MLRequestModel *)model success:(void(^)(id response)) success error:(void(^)(id errorResult)) error{
@@ -32,6 +35,11 @@
 
 + (void)requestWithManager:(AFHTTPSessionManager *)manager requestModel:(MLRequestModel *)model success:(void(^)(id response)) success error:(void(^)(id error)) errorBlock{
     
+    __block MLAnimationView *annimationView = nil;
+    if (!model.isAnimation) {
+       annimationView = [MLAnimationView creatAnimationView];
+    }
+
     [manager POST:model.url parameters:model.param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         model.originalJeson = responseObject;
         success(responseObject);
@@ -39,9 +47,14 @@
 //            创建缓存文件
             [MLCacheModel saveResponseObject:responseObject model:model];
         }
-        
+        if (annimationView) {
+            [annimationView removeAnimationView];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         errorBlock(error);
+        if (annimationView) {
+            [annimationView removeAnimationView];
+        }
     }];
 }
 
@@ -71,4 +84,6 @@
     [securityPolicy setPinnedCertificates:certSet];
     manager.securityPolicy = securityPolicy;
 }
+
+
 @end

@@ -83,16 +83,16 @@
 //}
 
 //自定义视图
-- (UIView *)noDataView{
-    MLCustomView *view = [[MLCustomView alloc]initWithFrame:self.tableview.bounds];
-    [view.button addTarget:self action:@selector(customActions:) forControlEvents:UIControlEventTouchUpInside];
-    return view;
-}
-
-- (void)customActions:(UIButton *)sender{
-    
-//    if (self.tableview.reloadBlock) {
-//    self.tableview.reloadBlock();
-//    }
-}
+//- (UIView *)noDataView{
+//    MLCustomView *view = [[MLCustomView alloc]initWithFrame:self.tableview.bounds];
+//    [view.button addTarget:self action:@selector(customActions:) forControlEvents:UIControlEventTouchUpInside];
+//    return view;
+//}
+//
+//- (void)customActions:(UIButton *)sender{
+//    
+////    if (self.tableview.reloadBlock) {
+////    self.tableview.reloadBlock();
+////    }
+//}
 @end
